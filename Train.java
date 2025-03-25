@@ -55,6 +55,14 @@ public class Train implements TrainRequirements{
     }
 
     /**
+     * Method that adds train car
+     */
+
+    public void addCar(Car car0){
+        cars.add(car0);
+    }
+
+    /**
      * Method returns the total seats left on the train
      * @return total seats remaining
      */

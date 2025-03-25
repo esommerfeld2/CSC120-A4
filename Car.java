@@ -38,6 +38,11 @@ public class Car implements CarRequirements {
      */
     public Boolean addPassenger(Passenger p){
         int seatsAvailable = this.maxCapacity - passengersOnboard.size();
+        for (int i = 0; i < passengersOnboard.size(); i++) {
+            if(passengersOnboard.get(i).equals(p)){
+                return false;
+            }
+        }
         if (seatsAvailable > 0){
             passengersOnboard.add(p);
             return true;
