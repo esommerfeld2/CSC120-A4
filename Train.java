@@ -29,19 +29,21 @@ public class Train implements TrainRequirements{
         engine = new Engine(this.fuelType, this.currentFuelLevel, this.fuelCapacity);
         cars = new ArrayList<>(this.nCars);
         for (int i = 0; i < this.nCars; i++) {
-            Car car = new Car( "Car" + i, this.passengerCapacity);
+            Car car = new Car(this.passengerCapacity);
             cars.add(car);
         }
     }
 
     /**
      * Acessor gets the engine
+     * @retun the engine
      */
     public Engine getEngine(){
         return this.engine;
     }
     /**
      * Acessor gets the car at the ith index
+     * @return the car
      */
     public Car getCar(int i){
        return cars.get(i);
@@ -49,6 +51,7 @@ public class Train implements TrainRequirements{
 
     /**
      * Acessor gets max capacity of the train
+     * @return the max capactiy
      */
     public int getMaxCapacity(){
         return this.nCars * this.passengerCapacity;
@@ -56,6 +59,7 @@ public class Train implements TrainRequirements{
 
     /**
      * Method that adds train car
+     * @param car0 the car being adding
      */
 
     public void addCar(Car car0){
@@ -82,8 +86,7 @@ public class Train implements TrainRequirements{
         for (Car car : cars) {
             if(car.getCapacity() == car.seatsRemaining()){
                 continue;
-            }
-            else{
+            } else {
                 car.printManifest();
             }
         }
@@ -108,10 +111,10 @@ public class Train implements TrainRequirements{
         System.out.println(myTrain.getEngine());
         System.out.println(myTrain.getCar(3));
         System.out.println(myTrain.getMaxCapacity());
-        Passenger Jeff = new Passenger("Jeff");
-        Passenger Will = new Passenger("Will");
-        Will.boardCar(myTrain.getCar(3));
-        Jeff.boardCar(myTrain.getCar(3));
+        Passenger jeff = new Passenger("Jeff");
+        Passenger will = new Passenger("Will");
+        will.boardCar(myTrain.getCar(3));
+        jeff.boardCar(myTrain.getCar(3));
         System.out.println(myTrain.seatsRemaining());
         myTrain.printManifest();
 

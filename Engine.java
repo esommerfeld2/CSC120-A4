@@ -57,8 +57,7 @@ public class Engine implements EngineRequirements {
         System.out.println("The current fuel level is at: " + this.currentFuelLevel);
         if(this.currentFuelLevel >= 10){
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }

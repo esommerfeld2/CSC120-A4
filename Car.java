@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class Car implements CarRequirements {
     
     //Atributes
-    private String name;
     private int maxCapacity;
     public ArrayList<Passenger> passengersOnboard;
 
@@ -11,8 +10,7 @@ public class Car implements CarRequirements {
      * Constructor
      * @param maxCapacity the max capacity the train can hold
      */
-    public Car(String name, int maxCapacity){
-        this.name = name;
+    public Car(int maxCapacity){
         this.maxCapacity = maxCapacity;
         passengersOnboard = new ArrayList<>();
     }
@@ -34,6 +32,7 @@ public class Car implements CarRequirements {
     }
     /**
      * Method that adds a passenger to the manifest
+     * @param p the passenger
      * @return true if it worked
      */
     public Boolean addPassenger(Passenger p){
@@ -46,14 +45,14 @@ public class Car implements CarRequirements {
         if (seatsAvailable > 0){
             passengersOnboard.add(p);
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
     
     /**
      * Method to remove a passenger from the manifest
+     * @param p the passenger
      * @return true if it worked
      */
     public Boolean removePassenger(Passenger p){
@@ -79,29 +78,22 @@ public class Car implements CarRequirements {
     }
 
     /**
-     * Used to format car return to be the name
-     */
-    public String toString(){
-        return(this.name);
-    }
-
-    /**
      * Used to check code, runs all functions in the class
      */
     public static void main(String[] args) {
-        Car myCar = new Car(" my", 2);
+        Car myCar = new Car( 2);
         System.out.println(myCar.getCapacity());
-        Passenger Jeff = new Passenger("Jeff");
-        System.out.println(myCar.addPassenger(Jeff));
+        Passenger jeff = new Passenger("Jeff");
+        System.out.println(myCar.addPassenger(jeff));
         System.out.println(myCar.seatsRemaining());
-        Passenger Will = new Passenger("Will");
-        System.out.println(myCar.addPassenger(Will));
-        System.out.println(myCar.addPassenger(Jeff));
+        Passenger will = new Passenger("Will");
+        System.out.println(myCar.addPassenger(will));
+        System.out.println(myCar.addPassenger(jeff));
         myCar.printManifest();
-        System.out.println(myCar.removePassenger(Will));
-        Passenger Ella = new Passenger("Ella");
-        System.out.println(myCar.removePassenger(Ella));
-        System.out.println(myCar.removePassenger(Jeff));
+        System.out.println(myCar.removePassenger(will));
+        Passenger ella = new Passenger("Ella");
+        System.out.println(myCar.removePassenger(ella));
+        System.out.println(myCar.removePassenger(jeff));
         myCar.printManifest();
 
     }
