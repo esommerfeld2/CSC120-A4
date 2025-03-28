@@ -5,11 +5,7 @@ public class Train implements TrainRequirements{
     //Atributes
     public Engine engine;
     public ArrayList<Car> cars;
-    private FuelType fuelType;
-    private double currentFuelLevel;
-    private double fuelCapacity;
     private int nCars;
-    private int passengerCapacity;
 
     /**
      * Constructor
@@ -21,15 +17,11 @@ public class Train implements TrainRequirements{
      */
     public Train(FuelType fuelType, double currentFuelLevel, double fuelCapacity, 
     int nCars, int passengerCapacity){
-        this.fuelType = fuelType;
-        this.currentFuelLevel = currentFuelLevel;
-        this.fuelCapacity = fuelCapacity;
         this.nCars = nCars;
-        this.passengerCapacity = passengerCapacity;
-        engine = new Engine(this.fuelType, this.currentFuelLevel, this.fuelCapacity);
+        engine = new Engine(fuelType, currentFuelLevel, fuelCapacity);
         cars = new ArrayList<>(this.nCars);
         for (int i = 0; i < this.nCars; i++) {
-            Car car = new Car(this.passengerCapacity);
+            Car car = new Car(passengerCapacity);
             cars.add(car);
         }
     }
@@ -54,7 +46,12 @@ public class Train implements TrainRequirements{
      * @return the max capactiy
      */
     public int getMaxCapacity(){
-        return this.nCars * this.passengerCapacity;
+        int totalCapacity = 0;
+        for(Car car : cars) {
+            int carCapacity = car.getCapacity();
+            totalCapacity += carCapacity;
+        }
+        return totalCapacity;
     }
 
     /**
@@ -91,16 +88,6 @@ public class Train implements TrainRequirements{
             }
         }
     } 
-
-    /**
-     * Used to format train output
-     */
-    public String toString(){
-        return("The fuel type is " + this.fuelType + ". The current fuel leve is "
-        + this.currentFuelLevel + ". The fuel capacity is " + this.fuelCapacity +
-        ". The number of cars is " + this.nCars + ". The passenger capacity for each car is " +
-        this.passengerCapacity);
-    }
 
     /**
      * Used to check code, runs all functions in the class
